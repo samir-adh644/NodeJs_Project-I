@@ -1,15 +1,20 @@
-const express = require("express")
+const express = require("express");
+const authRoute = require('./routes/authRoutes');
 const app = express()
 const PORT = 3000;
 require("./model/index")
-app.set('view engine','ejs')//setting up ejs
 
 
+// always set it up in node start
+app.set('view engine','ejs')
+app.use(express.urlencoded({extended:true}))
+app.use(express.json())
+// always set it up in node end
 
-app.get('/',(req,res)=>{
-    res.render('homePage')
-})
 
+// using routes start
+app.use('/',authRoute)
+// using routes end
 
 
 
