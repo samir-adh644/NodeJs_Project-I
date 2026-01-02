@@ -2,6 +2,7 @@ const express = require("express");
 const authRoute = require('./routes/authRoutes');
 const app = express()
 const PORT = 3000;
+const bcrypt = require('bcrypt')
 require("./model/index")
 
 
