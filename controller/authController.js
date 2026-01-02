@@ -1,22 +1,26 @@
 const bcrypt = require('bcrypt')
-// const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
-const session = require('express-session');
 const { users } = require("../model")
+const session = require("express-session");
+const flash = require("connect-flash");
 
 
 exports.renderHomePage =(req,res)=>{
-    res.render('homePage')
+    const [inSuccess]= req.flash('inSuccess')
+    res.render('homePage',{success:inSuccess})
 }
 
 
 exports.renderRegisterPage = (req,res)=>{
-    res.render('auth/register')
+    const [errorR] = req.flash('errorR')
+    res.render('auth/register',{errorR})
 }
 
 
 exports.renderLoginPage = (req,res)=>{
-    res.render('auth/login')
+    const [outSuccess] = req.flash('outSuccess')
+    const [error] = req.flash('error')
+    res.render('auth/login',{success:outSuccess,error})
 }
 
 exports.handleRegisterPage = async(req,res)=>{
@@ -31,7 +35,8 @@ exports.handleRegisterPage = async(req,res)=>{
         }
     })
     if(data.length>0){
-        return res.send("Already registered email")
+        req.flash('errorR','Already Registered')
+        res.redirect('/register')
     }
 
     await users.create({
@@ -65,23 +70,26 @@ exports.handleLoginPage = async(req,res)=>{
             })
             
             res.cookie('jwtToken',token)
+            req.flash('inSuccess','Logged In Successfully')
             res.redirect('/')
 
             
         }
         else{
-            res.send("Email or Password Incorrect")
+             req.flash('error','Email or password incorrect')
+             res.redirect("/login")
         }
     }
 
     else{
-        res.send("Email or Password Incorrect")
-        res.redirect('/login')
+         req.flash('error','Email or password incorrect')
+             res.redirect("/login")
     }
     
 }
 
 exports.handleLogOutPage = (req,res)=>{
     res.clearCookie('jwtToken')
-    res.send("Log out Successfully")
+    req.flash('outSuccess','Logged Out Successfully')
+    res.redirect("/login")
 }

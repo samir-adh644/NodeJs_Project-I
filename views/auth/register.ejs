@@ -21,6 +21,11 @@
       color: #333;
     }
 
+      #errorP{
+      color:brown;
+      text-align: center;
+    }
+
     /* ===== NAVBAR ===== */
 
 
@@ -38,7 +43,7 @@
   <div class="container">
     <div class="login-card">
       <h2>Register Page</h2>
-
+      <p id="errorP"><%- errorR %></p>
       <form action="/register" method="post">
         <div class="form-group">
           <label>Username</label>
