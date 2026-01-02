@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt')
 // const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
+const session = require('express-session');
 const { users } = require("../model")
 
 
@@ -44,6 +45,7 @@ exports.handleRegisterPage = async(req,res)=>{
 }
 
 exports.handleLoginPage = async(req,res)=>{
+
     const {email,password}=req.body
     if(!email || !password ){
         return res.send("Please provide email and password")
@@ -53,8 +55,8 @@ exports.handleLoginPage = async(req,res)=>{
         where:{
             email:email
         }
-
     })
+  
     if(data){
         const isMatched = bcrypt.compareSync(password,data.password)
         if(isMatched){
@@ -71,5 +73,15 @@ exports.handleLoginPage = async(req,res)=>{
             res.send("Email or Password Incorrect")
         }
     }
+
+    else{
+        res.send("Email or Password Incorrect")
+        res.redirect('/login')
+    }
     
+}
+
+exports.handleLogOutPage = (req,res)=>{
+    res.clearCookie('jwtToken')
+    res.send("Log out Successfully")
 }
