@@ -2,7 +2,10 @@ const express = require("express");
 const authRoute = require('./routes/authRoutes');
 const app = express()
 const PORT = 3000;
-const bcrypt = require('bcrypt')
+
+// external shits
+const dotenv = require('dotenv');
+const jwt = require('jsonwebtoken');
 require("./model/index")
 
 

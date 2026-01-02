@@ -1,5 +1,8 @@
-const { hashSync } = require("bcrypt")
+const bcrypt = require('bcrypt')
+// const dotenv = require('dotenv');
+const jwt = require('jsonwebtoken');
 const { users } = require("../model")
+
 
 exports.renderHomePage =(req,res)=>{
     res.render('homePage')
@@ -38,4 +41,35 @@ exports.handleRegisterPage = async(req,res)=>{
     })
 
     res.redirect('/login')
+}
+
+exports.handleLoginPage = async(req,res)=>{
+    const {email,password}=req.body
+    if(!email || !password ){
+        return res.send("Please provide email and password")
+    }
+
+    const [data]= await users.findAll({
+        where:{
+            email:email
+        }
+
+    })
+    if(data){
+        const isMatched = bcrypt.compareSync(password,data.password)
+        if(isMatched){
+            const token = jwt.sign({id: data.id},'Okay',{
+                expiresIn:'30d'
+            })
+            
+            res.cookie('jwtToken',token)
+            res.redirect('/')
+
+            
+        }
+        else{
+            res.send("Email or Password Incorrect")
+        }
+    }
+    
 }
