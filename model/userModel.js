@@ -12,7 +12,18 @@ const makeUserTable = (sequelize,DataTypes)=>{
          password : {
              type : DataTypes.STRING, 
              allowNull : false
-         }, 
+         },
+         role : {
+            type : DataTypes.STRING, 
+            allowNull : false,
+            defaultValue: "user"
+         }
+         ,
+         blockstatus : {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: true
+         }
 
      })
      return User

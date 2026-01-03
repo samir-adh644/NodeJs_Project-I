@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Control</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f3f3;
+      padding: 20px;
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #ffffff;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background: #222;
+      color: #fff;
+    }
+
+    .active {
+      color: green;
+      font-weight: bold;
+    }
+
+    .blocked {
+      color: red;
+      font-weight: bold;
+    }
+
+    button {
+      padding: 5px 12px;
+      border: none;
+      cursor: pointer;
+      color: white;
+    }
+
+    .block {
+      background-color: #d63031;
+    }
+
+    .unblock {
+      background-color: #00b894;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>Admin User Control (Demo)</h2>
+
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+
+    <tr>
+      <td>1</td>
+      <td>john_doe</td>
+      <td>john@gmail.com</td>
+      <td><span class="active">Active</span></td>
+      <td><button class="block">Block</button></td>
+    </tr>
+
+    <tr>
+      <td>2</td>
+      <td>alice_99</td>
+      <td>alice@yahoo.com</td>
+      <td><span class="blocked">Blocked</span></td>
+      <td><button class="unblock">Unblock</button></td>
+    </tr>
+
+    <tr>
+      <td>3</td>
+      <td>michael_dev</td>
+      <td>michael@outlook.com</td>
+      <td><span class="active">Active</span></td>
+      <td><button class="block">Block</button></td>
+    </tr>
+
+    <tr>
+      <td>4</td>
+      <td>sara_k</td>
+      <td>sara@gmail.com</td>
+      <td><span class="blocked">Blocked</span></td>
+      <td><button class="unblock">Unblock</button></td>
+    </tr>
+
+  </table>
+
+</body>
+</html>

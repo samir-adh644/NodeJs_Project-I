@@ -1,5 +1,6 @@
 const express = require("express");
 const authRoute = require('./routes/authRoutes');
+const adminRoute = require('./routes/adminRoutes');
 const app = express()
 const PORT = 3000;
 
@@ -8,6 +9,7 @@ const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
 const session = require("express-session");
 const flash = require("connect-flash");
+const cookieParser= require('cookie-parser')
 require("./model/index")
 
 
@@ -16,7 +18,9 @@ require("./model/index")
 app.set('view engine','ejs')
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
+app.use(cookieParser())
 // always set it up in node end
+
 
 // flash setup start
     app.use(session({
@@ -30,6 +34,7 @@ app.use(express.json())
 
 // using routes start
 app.use('/',authRoute)
+app.use('/',adminRoute)
 // using routes end
 
 

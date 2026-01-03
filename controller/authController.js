@@ -42,7 +42,7 @@ exports.handleRegisterPage = async(req,res)=>{
     await users.create({
         username:username,
         email:email,
-        password:hashSync(password,5),
+        password:bcrypt.hashSync(password,5),
      
     })
 
