@@ -2,19 +2,23 @@ const jwt = require('jsonwebtoken')
 const {promisify} = require("util")
 const { users } = require("../model")
 
-exports.isAuthenticated = async(req,res,next)=>{
+exports.isAuthenticated = async (req, res, next) => {
+  try {
     const token = req.cookies.jwtToken
-    if(!token || token == null || token== undefined){
-        return res.redirect('/login')
-    }
-    
-    const verifiedResult = await promisify(jwt.verify)(token,'Okay')
-    console.log(verifiedResult)
-    const data = await users.findByPk(verifiedResult.id)
-    if(!data){
-        return res.send("Invalid User")
+    if (!token) return res.redirect('/login')
+
+    const verified = await promisify(jwt.verify)(token, 'hahaha')
+    const user = await users.findByPk(verified.id)
+
+    if (!user) {
+      // stop execution here
+      return res.status(403).send("Invalid user")  // ✅ return stops function
     }
 
-    req.userId= verifiedResult.id
-    next();
+    req.userId = verified.id
+    next()
+  } catch (err) {
+    console.log(err.message)
+    return res.redirect('/login')  // ✅ return stops function
+  }
 }

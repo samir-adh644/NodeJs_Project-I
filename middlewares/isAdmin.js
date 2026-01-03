@@ -7,7 +7,7 @@ exports.isAdmin = async(req,res,next)=>{
     }
     if(user.role !== 'admin')
     {
-        res.send("Access denied: You dont have control over admin panel")
+        return res.send("Access denied: You dont have control over admin panel")
     }
     next();
 }
