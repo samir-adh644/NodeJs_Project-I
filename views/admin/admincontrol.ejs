@@ -57,12 +57,16 @@
     .unblock {
       background-color: #00b894;
     }
+    .admintext {
+      color: #1200b8;
+      font-weight: bold;
+    }
   </style>
 </head>
 
 <body>
 
-  <h2>Admin User Control (Demo)</h2>
+  <h2>Admin User Control</h2>
 
   <table>
     <tr>
@@ -73,37 +77,49 @@
       <th>Action</th>
     </tr>
 
+  <% if (data && data.length > 0) { %>
+  
+  <% data.forEach(user => { %>
+  
     <tr>
-      <td>1</td>
-      <td>john_doe</td>
-      <td>john@gmail.com</td>
-      <td><span class="active">Active</span></td>
-      <td><button class="block">Block</button></td>
-    </tr>
+      <td><%= user.id %></td>
+      <td><%= user.username %></td>
+      <td><%= user.email %></td>
 
-    <tr>
-      <td>2</td>
-      <td>alice_99</td>
-      <td>alice@yahoo.com</td>
-      <td><span class="blocked">Blocked</span></td>
-      <td><button class="unblock">Unblock</button></td>
-    </tr>
 
-    <tr>
-      <td>3</td>
-      <td>michael_dev</td>
-      <td>michael@outlook.com</td>
-      <td><span class="active">Active</span></td>
-      <td><button class="block">Block</button></td>
-    </tr>
+<td>
+  <% if (user.role === 'admin') { %>
+    <span class="admintext">Admin</span>
+  <% } else if (user.blockstatus) { %>
+    <span class="active">Active</span>
+  <% } else { %>
+    <span class="blocked">Blocked</span>
+  <% } %>
+</td>
 
-    <tr>
-      <td>4</td>
-      <td>sara_k</td>
-      <td>sara@gmail.com</td>
-      <td><span class="blocked">Blocked</span></td>
-      <td><button class="unblock">Unblock</button></td>
+<td>
+  <% if (user.role === 'admin') { %>
+    <span class="admin">Unalterable</span>
+
+  <% } else if (user.blockstatus) { %>
+    <form action="/block/<%= user.id %>" method="POST">
+      <button class="block" type="submit">Block</button>
+    </form>
+
+  <% } else { %>
+    <form action="/unblock/<%= user.id %>" method="POST">
+      <button class="unblock" type="submit">Unblock</button>
+    </form>
+  <% } %>
+</td>
+
+
+      
     </tr>
+  <% }) %>
+<% } %>
+
+    
 
   </table>
 

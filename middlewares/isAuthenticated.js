@@ -7,7 +7,7 @@ exports.isAuthenticated = async (req, res, next) => {
     const token = req.cookies.jwtToken
     if (!token) return res.redirect('/login')
 
-    const verified = await promisify(jwt.verify)(token, 'hahaha')
+    const verified = await promisify(jwt.verify)(token, 'Okay')
     const user = await users.findByPk(verified.id)
 
     if (!user) {
