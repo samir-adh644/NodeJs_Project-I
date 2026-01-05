@@ -34,6 +34,15 @@ db.sequelize = sequelize
 
 db.admins = require("./adminModel.js")(sequelize,DataTypes);
 db.users = require("./userModel.js")(sequelize,DataTypes);
+db.questions = require("./questionModel.js")(sequelize,DataTypes);
+db.answers = require("./answerModel.js")(sequelize,DataTypes);
+
+// making relationships
+db.users.hasMany(db.questions)
+db.questions.belongsTo(db.users)
+
+db.questions.hasMany(db.questions)
+db.answers.belongsTo(db.questions)
 
 db.sequelize.sync({force : false}).then(()=>{
     console.log("Synced done!!")
