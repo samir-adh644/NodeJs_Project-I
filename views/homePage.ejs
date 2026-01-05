@@ -20,6 +20,107 @@
       color: #333;
     }
 
+    /* questions start */
+       .page {
+      width: 90%;              /* almost full screen */
+      max-width: 1200px;
+      margin: 40px auto;       /* space from navbar */
+    }
+
+    .question-card {
+      background-color: #ffffff;
+      padding: 25px;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      margin-bottom: 25px;     /* GAP between questions */
+    }
+
+    .question-title {
+      font-size: 22px;
+      font-weight: bold;
+      color: #1f2937;
+      margin-bottom: 10px;
+    }
+
+    .question-user {
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 15px;
+    }
+
+    .question-description {
+      font-size: 16px;
+      color: #374151;
+      line-height: 1.6;
+    }
+    /* questions end */
+
+   .question-toolbar {
+    width: 100%;
+    max-width: 1100px;
+    margin: 20px auto;
+    padding: 10px 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Search */
+.search-container {
+    width: 60%;
+}
+
+.question-search {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 15px;
+
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+}
+
+.question-search:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.2);
+}
+
+/* Ask Button */
+.ask-question-btn {
+    padding: 12px 22px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.ask-question-btn:hover {
+    background-color: #0b5ed7;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .question-toolbar {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .search-container,
+    .ask-container {
+        width: 100%;
+    }
+
+    .ask-question-btn {
+        width: 100%;
+    }
+}
+
+
     /* ===== NAVBAR ===== */
 
 
@@ -31,6 +132,59 @@
      <!-- ===== NAVBAR ===== -->
  <%- include('./components/navbar.ejs') %>
  <p style="color: green;"><%- success %></p>
- <h1 style="color:white">This is my HomePage</h1>
+ 
+<!-- Search & Ask Question Wrapper -->
+<div class="question-toolbar">
+    <div class="search-container">
+        <input 
+            type="text" 
+            class="question-search" 
+            placeholder="Search questions..."
+        />
+    </div>
+
+    <div class="ask-container">
+        <a class="ask-question-btn" href="/askquestion">
+            Ask Question
+        </a>
+    </div>
+</div>
+
+
+
+<div class="page">
+  <div class="question-card">
+      <div class="question-title">
+        What is the difference between JWT and Sessions in Node.js?
+      </div>
+
+      <div class="question-description">
+        I am building a Node.js application and I am confused about when to use
+        JSON Web Tokens versus session-based authentication. Which approach is
+        better and why?
+      </div>
+
+      <div class="question-user">
+        Asked by <strong>samir</strong>
+      </div>
+    </div>
+
+  <div class="question-card">
+      <div class="question-title">
+        What is the difference between JWT and Sessions in Node.js?
+      </div>
+
+      <div class="question-description">
+        I am building a Node.js application and I am confused about when to use
+        JSON Web Tokens versus session-based authentication. Which approach is
+        better and why?
+      </div>
+
+      <div class="question-user">
+        Asked by <strong>samir</strong>
+      </div>
+  </div>
+</div>
+
 </body>
 </html>

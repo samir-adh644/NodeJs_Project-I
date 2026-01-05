@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ask Question Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="navbar.css">
+  <link rel="stylesheet" href="questionbox.css">
+  <style>
+    /* ===== RESET ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1d2671, #c33764);
+      min-height: 100vh;
+      color: #333;
+    }
+
+   
+
+    /* ===== NAVBAR ===== */
+
+
+    /* ===== CONTAINER ===== */
+
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+ <%- include('../components/navbar.ejs') %>
+ 
+  <!-- ===== LOGIN FORM ===== -->
+  <div class="container">
+    <div class="login-card">
+      <h2>Ask Question</h2>
+      <form action="/askquestion" method="post">
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" placeholder="Enter Question Title" name ="title" required>
+        </div>
+
+        <div class="form-group">
+          <label>Description</label>
+            <textarea placeholder="Describe here...." cols="30" rows="10" name="description"></textarea>
+        </div>
+
+        <button type="submit" class="btn">Ask</button>
+      </form>
+
+      
+    </div>
+  </div>
+
+</body>
+</html>

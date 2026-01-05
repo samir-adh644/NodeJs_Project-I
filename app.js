@@ -1,6 +1,7 @@
 const express = require("express");
 const authRoute = require('./routes/authRoutes');
 const adminRoute = require('./routes/adminRoutes');
+const questionRoute = require('./routes/questionRoutes');
 const app = express()
 const PORT = 3000;
 
@@ -35,6 +36,8 @@ app.use(cookieParser())
 // using routes start
 app.use('/',authRoute)
 app.use('/',adminRoute)
+app.use('/',questionRoute)
+
 // using routes end
 
 

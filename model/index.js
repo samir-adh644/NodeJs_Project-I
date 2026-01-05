@@ -41,8 +41,11 @@ db.answers = require("./answerModel.js")(sequelize,DataTypes);
 db.users.hasMany(db.questions)
 db.questions.belongsTo(db.users)
 
-db.questions.hasMany(db.questions)
+db.questions.hasMany(db.answers)
 db.answers.belongsTo(db.questions)
+
+db.users.hasMany(db.answers)
+db.answers.belongsTo(db.users)
 
 db.sequelize.sync({force : false}).then(()=>{
     console.log("Synced done!!")
