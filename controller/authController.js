@@ -5,12 +5,6 @@ const session = require("express-session");
 const flash = require("connect-flash");
 
 
-exports.renderHomePage =(req,res)=>{
-    const [inSuccess]= req.flash('inSuccess')
-    res.render('homePage',{success:inSuccess})
-}
-
-
 exports.renderRegisterPage = (req,res)=>{
     const [errorR] = req.flash('errorR')
     res.render('auth/register',{errorR})

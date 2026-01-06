@@ -131,7 +131,7 @@
 <body>
      <!-- ===== NAVBAR ===== -->
  <%- include('./components/navbar.ejs') %>
- <p style="color: green;"><%- success %></p>
+  <!--  -->
  
 <!-- Search & Ask Question Wrapper -->
 <div class="question-toolbar">
@@ -153,37 +153,26 @@
 
 
 <div class="page">
-  <div class="question-card">
+  <% allQuestion.forEach(question =>{ %>
+
+     <div class="question-card">
       <div class="question-title">
-        What is the difference between JWT and Sessions in Node.js?
+        <%= question.title %>
       </div>
 
       <div class="question-description">
-        I am building a Node.js application and I am confused about when to use
-        JSON Web Tokens versus session-based authentication. Which approach is
-        better and why?
+       <%= question.description %>
       </div>
 
       <div class="question-user">
-        Asked by <strong>samir</strong>
+        Asked by <strong><%= question.user.username %> </strong>
       </div>
     </div>
 
-  <div class="question-card">
-      <div class="question-title">
-        What is the difference between JWT and Sessions in Node.js?
-      </div>
+  <% }) %>
+ 
 
-      <div class="question-description">
-        I am building a Node.js application and I am confused about when to use
-        JSON Web Tokens versus session-based authentication. Which approach is
-        better and why?
-      </div>
-
-      <div class="question-user">
-        Asked by <strong>samir</strong>
-      </div>
-  </div>
+  
 </div>
 
 </body>
