@@ -11,6 +11,7 @@ const jwt = require('jsonwebtoken');
 const session = require("express-session");
 const flash = require("connect-flash");
 const cookieParser= require('cookie-parser')
+const {promisify} = require("util")
 require("./model/index")
 
 
@@ -21,6 +22,29 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use(cookieParser())
 // always set it up in node end
+
+// dynamic navbar start
+app.use(async(req,res,next)=>{
+    const token = req.cookies.jwtToken
+    try {
+          const verifiedResult = await promisify(jwt.verify)(token,'Okay')
+     if(verifiedResult)
+     {
+         res.locals.isAuthneticated = true
+     }
+     else{
+         res.locals.isAuthneticated = false
+     }
+    }
+    catch(error){
+        res.locals.isAuthneticated=false
+    }
+   
+   
+    next()
+})
+
+// dynamic navbar end 
 
 
 // flash setup start
