@@ -2,6 +2,7 @@ const express = require("express");
 const authRoute = require('./routes/authRoutes');
 const adminRoute = require('./routes/adminRoutes');
 const questionRoute = require('./routes/questionRoutes');
+const answerRoute = require('./routes/answerRoutes')
 const app = express()
 const PORT = 3000;
 
@@ -61,7 +62,7 @@ app.use(async(req,res,next)=>{
 app.use('/',authRoute)
 app.use('/',adminRoute)
 app.use('/',questionRoute)
-
+app.use('/',answerRoute)
 // using routes end
 
 

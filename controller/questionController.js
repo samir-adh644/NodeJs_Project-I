@@ -1,4 +1,4 @@
-const { questions, users } = require("../model")
+const { questions, users, answers } = require("../model")
 const session = require("express-session");
 const flash = require("connect-flash");
 exports.renderAskQuestionPage =(req,res)=>{
@@ -35,7 +35,19 @@ exports.showQuestion = async(req,res)=>{
 }
 
 exports.showSingleQuestionPage = async(req,res)=>{
-    const question = await questions.findByPk(req.params.id,{include:users})
-    res.render('questions/singlequestion',{question})
+    const id = req.params.id
+    const question = await questions.findByPk(id,{include:users})
+
+    const answerData = await answers.findAll({
+        where:{
+            questionId:id
+        },
+        include:[{
+            model:users,
+            attributes:['username']
+        }]
+    })
+
+    res.render('questions/singlequestion',{question,answers:answerData})
 }
 

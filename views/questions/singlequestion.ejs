@@ -33,8 +33,8 @@
 
     /* Container */
     .container {
-      max-width: 900px;
-      height:100vh;
+      max-width: 98vw;
+      max-height:100%;
       margin: 40px auto;
       padding: 25px;
       background: #fff;
@@ -72,6 +72,53 @@
     .back-link:hover {
       text-decoration: underline;
     }
+
+    .answers-section{
+        margin-top:4%;
+    }
+
+     /* Answer Form Styles */
+  .answer-form {
+    margin-top: 40px;
+    background: #f3f4f6;
+    padding: 20px 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  }
+
+  .answer-form h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #111827;
+  }
+
+  .answer-form textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    resize: vertical;
+    font-size: 16px;
+    font-family: inherit;
+    margin-bottom: 15px;
+  }
+
+  .answer-form button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #2563eb;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .answer-form button:hover {
+    background-color: #1d4ed8;
+  }
   </style>
 </head>
 <body>
@@ -94,6 +141,48 @@
     <div class="question-description">
       <%= question.description %>
     </div>
+<!-- question section ends -->
+
+<!-- Answer Form starts -->
+
+<div class="answer-form">
+ 
+  <form action="/answers/<%= question.id %>" method="POST">
+    <textarea name="answer" placeholder="Type your answer here..." required></textarea>
+    <button type="submit">Submit Answer</button>
+  </form>
+</div>
+
+<!-- Answer Form ends -->
+
+
+
+
+<!-- answer sectio0n starts -->
+<div class="answers-section">
+  <h2>
+    Answers 
+  </h2>
+
+  
+    <% answers.forEach(answer => { %>
+        <hr />
+      <div class="answer-card">
+        <div class="answer-meta">
+          Answered by <strong><%= answer.user.username %></strong>
+          on <%= new Date(answer.createdAt).toDateString() %>
+        </div>
+       
+        <div class="answer-content">
+          -><%= answer.description %>
+        </div>
+      </div>
+     <hr />
+    <% }) %>
+ 
+</div>
+
+<!-- answer section ends -->
 
     <a href="/" class="back-link">← Back to Home</a>
   </div>
