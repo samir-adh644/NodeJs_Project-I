@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title><%= question.title %></title>
+
+  <link rel="stylesheet" href="/navbar.css">
+  <style>
+ * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1d2671, #c33764);
+      min-height: 100vh;
+      color: #333;
+    }
+
+
+    /* Navbar */
+    .navbar {
+      background-color: #1e293b;
+      padding: 15px 40px;
+      color: #fff;
+    }
+
+    .navbar h1 {
+      font-size: 22px;
+    }
+
+    /* Container */
+    .container {
+      max-width: 900px;
+      height:100vh;
+      margin: 40px auto;
+      padding: 25px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .question-title {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #111827;
+    }
+
+    .meta {
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 25px;
+    }
+
+    .question-description {
+      font-size: 17px;
+      white-space: pre-line;
+    }
+
+    /* Back link */
+    .back-link {
+      display: inline-block;
+      margin-top: 30px;
+      text-decoration: none;
+      color: #2563eb;
+      font-weight: bold;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+       <!-- ===== NAVBAR ===== -->
+ <%- include('../components/navbar.ejs') %>
+  <!--  -->
+
+  <!-- Question Content -->
+  <div class="container">
+    <div class="question-title">
+      <%= question.title %>
+    </div>
+
+    <div class="meta">
+      Asked by <strong><%= question.user.username %></strong>
+      on <%= new Date(question.createdAt).toDateString() %>
+    </div>
+
+    <div class="question-description">
+      <%= question.description %>
+    </div>
+
+    <a href="/" class="back-link">← Back to Home</a>
+  </div>
+
+</body>
+</html>

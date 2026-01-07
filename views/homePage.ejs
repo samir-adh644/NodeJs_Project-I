@@ -161,7 +161,12 @@
       </div>
 
       <div class="question-description">
-       <%= question.description %>
+  
+      <p>
+        <%= question.description.split(" ").slice(0, 50).join(" ") %>...
+        <a href="/singlequestion/<%= question.id %>">Read more</a>
+      </p>
+
       </div>
 
       <div class="question-user">

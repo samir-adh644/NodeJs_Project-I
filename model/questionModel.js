@@ -5,7 +5,7 @@ const makeQuestionTable = (sequelize,DataTypes)=>{
              allowNull : false
          }, 
          description : {
-             type : DataTypes.STRING, 
+             type : DataTypes.TEXT, 
              allowNull : false
          }, 
          userId: {                  

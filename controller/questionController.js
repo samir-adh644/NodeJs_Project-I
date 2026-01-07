@@ -34,4 +34,8 @@ exports.showQuestion = async(req,res)=>{
     res.render('homepage',{allQuestion})
 }
 
+exports.showSingleQuestionPage = async(req,res)=>{
+    const question = await questions.findByPk(req.params.id,{include:users})
+    res.render('questions/singlequestion',{question})
+}
 
